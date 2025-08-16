@@ -13,6 +13,6 @@ center_header(level=1, text="ספריית שדי חמד 🌳")
 
 render_books_search_and_table(books_df, loans_df)
 st.markdown(
-    "<div style='text-align: center;'><a href='mailto:hemmed.library@gmail.com'>צור קשר</a> 📥</div>",
+    "<div style='text-align: center;'><a href='mailto:hemmed.library@gmail.com'>תיבת פניות</a> 📥</div>",
     unsafe_allow_html=True
 )
