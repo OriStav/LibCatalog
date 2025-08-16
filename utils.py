@@ -51,9 +51,9 @@ def render_books_tab(books_df, loans_df):
     center_header(level=3, text="ספריית שדי חמד")
     render_books_search_and_table(books_df, loans_df)
     with st.container(horizontal=True, horizontal_alignment="center"):
-        st.metric("📚 סה״כ ספרים", metrics['total_books'])
-        st.metric("✅ ספרים זמינים", metrics['available_books'])
-        st.metric("📖 ספרים מושאלים", metrics['borrowed_books'])
+        st.metric("📚 סה״כ ספרים", f"{metrics['total_books']:,}")
+        st.metric("✅ ספרים זמינים", f"{metrics['available_books']:,}")
+        st.metric("📖 ספרים מושאלים", f"{metrics['borrowed_books']:,}")
 
 def render_books_search_and_table(books_df, loans_df):
     """Render the books search and table section"""
