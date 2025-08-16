@@ -110,12 +110,16 @@ def render_books_search_and_table(books_df, loans_df):
 
         search_term = st.selectbox("חיפוש ספרים לפי שם או מחבר",
                                     options=search_options,
-                                    placeholder='בחר/י ספר או מחבר', label_visibility="collapsed",key="search_selectbox")
-        search_row = st.container(horizontal=True, horizontal_alignment="center")
-        
+                                    placeholder='בחר/י ספר או מחבר',
+                                      label_visibility="collapsed",
+                                      key="search_selectbox")
+        cols = st.columns([3, 1, 3])
+        # search_row = st.container(horizontal_alignment="center", width=8000)
+        search_row = cols[1]
+
         status_cont = st.container(horizontal_alignment="center",
                                 height=140, border=False,
-                                vertical_alignment="center",key="dynamic_status")
+                                vertical_alignment="center", key="dynamic_status")
         st.divider()
         center_header(level=5, text="קטלוג הספרים 📚")
         df_show = table_render(books_df, search_term)
@@ -125,24 +129,20 @@ def render_books_search_and_table(books_df, loans_df):
                     """
                     <div style='display: flex; justify-content: center;'>
                         <div style='background-color: #fcf7e4; color: #856404; border: 1px solid #ffeeba; border-radius: 8px; padding: 10px 20px; margin: 10px 0; font-size: 1em; text-align: center; max-width: 400px;'>
-                             יש להקליד שם ספר או מחבר ולהקיש 🔎 לחיפוש
+                             יש להקליד שם ספר או מחבר (שם משפחה תחילה) ולהקיש 🔎 לחיפוש
                         </div>
                     </div>
                     """,
                     unsafe_allow_html=True
             )
 
-        if search_row.form_submit_button(":material/search:", type="primary"):
-            # if len(df_show) == 1:
+        if search_row.form_submit_button(":material/search: חפש", type="primary", use_container_width=True):
             if search_term:
                 with status_cont:
                     center_header(5, f"{df_show['name'].values[0]}")
                     center_header(6, f"{df_show['author'].values[0]}")
                     center_header(7, f"{df_show['available'].values[0]}")
 
-        if search_row.form_submit_button(":material/refresh:", type="primary"):
-            
-            search_term = ""
         calculate_metrics(books_df, loans_df)
         
     # with table_cont:
