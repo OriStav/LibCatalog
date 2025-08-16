@@ -134,10 +134,11 @@ def render_books_search_and_table(books_df, loans_df):
 
         if search_row.form_submit_button(":material/search:", type="primary"):
             # if len(df_show) == 1:
-            with status_cont:
-                center_header(5, f"{df_show['name'].values[0]}")
-                center_header(6, f"{df_show['author'].values[0]}")
-                center_header(7, f"{df_show['available'].values[0]}")
+            if search_term:
+                with status_cont:
+                    center_header(5, f"{df_show['name'].values[0]}")
+                    center_header(6, f"{df_show['author'].values[0]}")
+                    center_header(7, f"{df_show['available'].values[0]}")
 
         if search_row.form_submit_button(":material/refresh:", type="primary"):
             
